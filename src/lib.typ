@@ -139,7 +139,7 @@
           [#h(2.5mm)]
         } else {
           [#spacing(prev, "unk")]
-          [#text(fill: red, font: "arial")[??? #word]]
+          [#text(fill: red, font: "libertinus serif")[??? #word]]
           prev = "unk"
         }
       }

@@ -1,9 +1,10 @@
 #import "lib.typ" as pona
 
 #let nimi-sin = (
+  Elena: ("epiku/2", "laso", "epiku", "nasin", "alasa"),
   Ekalese: ("epiku", "kiwen", "ale", "lawa", "epiku", "suli", "epiku"),
   Sese: ("sewi", "epiku", "sewi", "epiku"),
-  Ela: ("esun", "linja", "alasa"),
+  Ela: ("en", "linja", "alasa"),
   Elitese: ("esun", "linja", "ilo", "toki", "esun", "sijelo", "esun"),
   Nemeja: ("noka", "esun", "moku", "esun", "jan", "ala"),
   Leneja: ("len", "esun", "nena", "esun", "jelo", "awen"),
@@ -29,7 +30,8 @@
 #Lasina("
 == open
 
-tenpo pini la jan Ekalese li lon .
+tenpo pini la jan Ekalese li
+~ lon ma Elena .
 mama mije ona li jan sewi Sese .
 jan sewi Ela li meli pi jan Sese ,
 ~ taso ona li mama ala tawa jan Ekalese .
@@ -43,7 +45,8 @@ jan Ekalese li pilin nasa mute , li isipin ike ,
 
 jan Ekalese li pilin ike mute tan ni .
 ona li wile ala moli e kulupu ona .
-ona li tawa jan lawa Elitese , li toki e ni :
+ona li tawa jan lawa Elitese ,
+~ li toki e ni :
 te mi pilin apeja tan moli pi kulupu mi .
 ~ mi wile anpa . to
 ")
@@ -78,8 +81,8 @@ tenpo kama la ilo utala ale
 
 jan Ekalese li kama tawa ona la
 jan Elitese
-~ ~ li pilin monsuta tan selo soweli ,
-~ ~ li toki e ni :
+~~ li pilin monsuta tan selo soweli ,
+~~ li toki e ni :
 te o kama ala lon tomo mi .
 ~ o tawa a .
 ~ o alasa e akesi pi lawa mute pi ma Leneja .
@@ -125,7 +128,7 @@ jan Ekalese li pana e telo moli tawa ilo kipisi ona .
 ")
 
 #Lasina("
-== soweli tawa mute pi Tijomete
+== soweli tawa mute pi ma Tijomete
 ")
 
 #Lasina("

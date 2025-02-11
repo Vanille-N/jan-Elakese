@@ -6,8 +6,8 @@
   Ela: ("esun", "linja", "alasa"),
   Elitese: ("esun", "linja", "ilo", "toki", "esun", "sijelo", "esun"),
   Nemeja: ("noka", "esun", "moku", "esun", "jan", "ala"),
-  Leneja: ("len",),
-  Ijolasu: ("ilo",),
+  Leneja: ("len", "esun", "nena", "esun", "jelo", "awen"),
+  Ijolasu: ("ilo", "jan", "o", "laso", "ala", "suwi", "uta"),
 )
 
 #let Lasina(str) = [
@@ -35,7 +35,7 @@ jan sewi Ela li meli pi jan Sese ,
 ~ taso ona li mama ala tawa jan Ekalese .
 ona li pilin ike mute tawa jan Ekalese .
 
-jan Ekalese li suli mute , li jan wawa , li pilin pona .
+jan Ekalese li suli mute , li wawa , li pilin pona .
 meli ona en jan lili ona li pilin pona lon poka ona .
 ike la jan Ela li pana e usawi nasa tawa ona .
 jan Ekalese li pilin nasa mute , li isipin ike ,
@@ -95,9 +95,9 @@ jan Ekalese li toki insa e ni :
 te mi wan li ken ala moli e akesi .
 ~ mi wile e jan ante lon poka mi . to
 
-jan Ijolasu li pona tawa ona , li pali e ni :
-jan Ekalese li kipisi e lawa wan la
-jan Ijolasu li seli e ona kepeken ilo seli .
+jan Ijolasu li pona tawa ona kepeken ni :
+~ jan Ekalese li kipisi e lawa wan la
+~ jan Ijolasu li seli e ona kepeken ilo seli .
 lawa akesi li ken mama ala .
 akesi ike li jo ala e lawa , li moli .
 telo loje insa pi akesi ike li telo moli .

@@ -154,7 +154,7 @@ jan Ekalese li pana e telo moli tawa ilo kipisi ona .
 ")
 
 #Lasina("
-== soweli tawa mute pi ma Tijomete
+== soweli tawa mute pi jan Tijomete
 ")
 
 #Lasina("

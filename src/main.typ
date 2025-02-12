@@ -80,19 +80,19 @@ te mi pilin apeja tan moli pi kulupu mi .
 ")
 
 #Lasina("
-== soweli suli pi selo kiwen
+== soweli alasa pi selo kiwen
 == lon ma Nemeja
 
 jan Elitese li toki e ni :
 te mi pana e pali suli mute tawa sina .
 ~ sina pini e pali ale la sina pilin apeja ala .
-~ o alasa e soweli suli pi ma Nemeja .
+~ o alasa e soweli alasa pi ma Nemeja .
 ~ o moli e ona . to
 
 jan Ekalese li tawa ma Nemeja .
-ona li alasa e soweli suli , li jo e ilo kipisi .
-taso selo pi soweli suli li kiwen mute a !
-ilo kipisi li ken ala kipisi e selo kiwen pi soweli suli .
+ona li alasa e soweli alasa , li jo e ilo kipisi .
+taso selo pi soweli alasa li kiwen mute a !
+ilo kipisi li ken ala kipisi e selo kiwen pi soweli alasa .
 
 jan Ekalese li toki insa e ijo pona ,
 ~ li pake e uta soweli .
@@ -192,6 +192,9 @@ jan Elitese li pilin ike , li pilin apeja tan ni .
 
 #Lasina("
 == soweli wawa lon ma Elimantijan
+
+jan Elitese toki e ni tawa jan Ekalese :
+te o pana e soweli wawa lon ma Elimantijan 
 ")
 
 #Lasina("

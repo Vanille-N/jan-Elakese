@@ -3,6 +3,22 @@
 #let sin(var: 1) = (group: "word", rarity: "sin", var: var)
 #let punct(word, symb, spacing: "close") = (word: word, symb: symb, group: spacing)
 
+
+#let pini = <tp-pini>
+#let log-accum = state("log", ())
+#let log() = context {
+  let errors = log-accum.at(<tp-pini>)
+  if errors != () {
+    text(fill: red)[*There are compilation errors*\ ]
+    for msg in log-accum.at(<tp-pini>) [
+      #h(1cm) #msg \
+    ]
+  }
+}
+#let alert(color, msg) = {
+  log-accum.update(acc => { acc.push(text(fill: color)[* #msg *]); acc })
+}
+
 #let nimi-ale = (
   a: pu(),
   akesi: pu(var: 2),
@@ -338,7 +354,7 @@
                 initial + if variant == none { "" } else { str(variant) }
               }
               if initial in ambiguous-initials {
-                panic(initial + " (initial of " + word + ") is ambiguous due to also being the initial of " + ambiguous-initials.at(initial))
+                alert(red)[#initial (initial of #word) is ambiguous due to also being the initial of #ambiguous-initials.at(initial)]
               } else {
                 ambiguous-initials.insert(initial, word)
               }

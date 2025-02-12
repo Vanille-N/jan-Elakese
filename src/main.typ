@@ -1,5 +1,31 @@
 #import "lib.typ" as pona
 
+#pona.log()
+
+#let nimi-sin = (
+  Ela: ("esun", "linja", "awen"),
+  Eli: ("esun", "lon", "ilo"),
+  Elo: ("esun", "la", "olin"),
+)
+
+#let Lasina(str) = [
+  #table(
+    columns: (60%, 40%),
+    inset: 10pt,
+    stroke: none,
+    ..pona.sitelen-Lasina(nimi-sin, str)
+      .zip(pona.sitelen-pona(nimi-sin, str))
+      .flatten()
+  )
+]
+
+#Lasina("
+Ela Eli Elo
+Ela Eli Elo
+")
+
+#line(length: 100%)
+
 #let nimi-sin = (
   Elena: ("epiku/2", "laso", "epiku", "nasin", "alasa"),
   Ekalese: ("epiku", "kiwen", "ale", "lawa", "epiku", "suli", "epiku"),
@@ -150,3 +176,5 @@ jan Ekalese li pana e telo moli tawa ilo kipisi ona .
 #Lasina("
 == pini
 ")
+
+#pona.pini

@@ -5,18 +5,23 @@
 
 
 #let pini = <tp-pini>
-#let log-accum = state("log", ())
+#let log-accum = state("log", (:))
 #let log() = context {
   let errors = log-accum.at(<tp-pini>)
   if errors != () {
     text(fill: red)[*There are compilation errors*\ ]
-    for msg in log-accum.at(<tp-pini>) [
+    for (_, msg) in log-accum.at(<tp-pini>) [
       #h(1cm) #msg \
     ]
   }
 }
-#let alert(color, msg) = {
-  log-accum.update(acc => { acc.push(text(fill: color)[* #msg *]); acc })
+#let alert(color, uid, msg) = {
+  log-accum.update(acc => {
+    if uid not in acc {
+      acc.insert(uid, text(fill: color)[* #msg *])
+    }
+    acc
+  })
 }
 
 #let nimi-ale = (
@@ -206,8 +211,8 @@
   ":": punct(":", []),
   "!": punct("!", []),
   ",": punct(",", []),
-  "~": punct([], h(2.5mm)),
-  "~~": punct([], h(5mm)),
+  "~": punct("", h(2.5mm)),
+  "~~": punct("", h(5mm)),
 )
 
 #let bold-if(b, t) = {
@@ -243,23 +248,44 @@
   ).at(prev).at(cur)
 }
 
+#let add-record(dic, k, v) = {
+  if v != none {
+    dic.insert(k, v)
+  }
+  dic
+}
+
+#let rarity-alert(word) = {
+  let meta = nimi-ale.at(word, default: none)
+  if meta == none {
+    alert(red, "rarity("+word+")")["#word" li nimi ala]
+  } else if meta.group != "word" {
+    none
+  } else if meta.rarity == "pu" {
+    none
+  } else if meta.rarity == "ku" {
+    alert(yellow, "rarity("+word+")")["#word" li nimi pu ala]
+  } else {
+    alert(yellow, "rarity("+word+")")["#word" li nimi pi ku suli ala]
+  }
+}
+
 #let dispatch-Lasina(word, ext) = {
   if "/" in word {
-    (word.split("/").at(0), "word")
-  } else {
-    let id = nimi-ale.at(word, default: none)
-    if id == none {
-      if word in ext {
-        (word, "word")
-      } else {
-        (text(fill: red)[#word], "word")
-      }
+    word = word.split("/").at(0)
+  }
+  let id = nimi-ale.at(word, default: none)
+  if id == none {
+    if word in ext {
+      (word, (t => t), "word", [])
     } else {
-      if id.group == "word" {
-        (word, id.group)
-      } else {
-        (id.word, id.group)
-      }
+      (word, (t => text(fill: red)[#t]), "word", rarity-alert(word))
+    }
+  } else {
+    if id.group == "word" {
+      (word, (t => t), id.group, rarity-alert(word))
+    } else {
+      (id.word, (t => t), id.group, [])
     }
   }
 }
@@ -268,6 +294,7 @@
   let structure = split-words(txt)
   structure.map(paragraph => par(justify: true, {
     let prev-category = ""
+    let alerts = ()
     for line in paragraph {
       let (size, bold, line) = if line.at(0) == "=" {
         (16pt, true, line.slice(1))
@@ -278,13 +305,15 @@
       }
       text(size: size)[#bold-if(bold)[#{
         for word in line {
-          let (word, category) = dispatch-Lasina(word, ext-names)
+          let (word, style, category, err) = dispatch-Lasina(word, ext-names)
           [#spacing(prev-category, category)]
-          [#word]
+          [#style(word)]
+          alerts.push(err)
           prev-category = category
         }
       }]]
     }
+    for a in alerts { a }
   }))
 }
 
@@ -315,6 +344,7 @@
   let out-structure = ()
   for paragraph in structure {
     let out-paragraph = []
+    let alerts = ()
     for line in paragraph {
       let (size, line) = if line.at(0) == "=" {
         (16pt, line.slice(1))
@@ -335,6 +365,7 @@
                 let id = nimi-ale.at(initial)
                 let (initial, variant) = reattach-num(initial, variant, maxvar: id.var)
                 [ #initial#variant ]
+                alerts.push(rarity-alert(initial))
               }]]
             } else {
               [[#{
@@ -343,6 +374,13 @@
                   let id = nimi-ale.at(letter)
                   let (letter, variant) = reattach-num(letter, variant, maxvar: id.var)
                   [ #letter#variant ]
+                }
+              }#{
+                for letter in ext-names.at(word) {
+                  let (letter, variant) = detach-num(letter)
+                  let id = nimi-ale.at(letter)
+                  let (letter, variant) = reattach-num(letter, variant, maxvar: id.var)
+                  alerts.push(rarity-alert(letter))
                 }
               }]]
               already-occurred.push(word)
@@ -354,7 +392,8 @@
                 initial + if variant == none { "" } else { str(variant) }
               }
               if initial in ambiguous-initials {
-                alert(red)[#initial (initial of #word) is ambiguous due to also being the initial of #ambiguous-initials.at(initial)]
+                let previous = ambiguous-initials.at(initial)
+                alerts.push(alert(red, "ambiguity("+word+","+previous+")")[#initial (initial of #word) is ambiguous due to also being the initial of #previous])
               } else {
                 ambiguous-initials.insert(initial, word)
               }
@@ -366,17 +405,20 @@
               if id.group == "word" {
                 let (word, variant) = reattach-num(word, variant, maxvar: id.var)
                 [ #word#variant ]
+                alerts.push(rarity-alert(word))
               } else {
                 [#id.symb]
               }
             } else {
               text(fill: red, font: "libertinus serif")[#word]
+              alerts.push(rarity-alert(word))
             }
           }
           [ #word]
         }
         [\ ]
       }]
+      out-paragraph += for a in alerts { a }
     }
     out-structure.push(out-paragraph)
   }

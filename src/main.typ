@@ -6,6 +6,8 @@
   Ela: ("esun", "linja", "awen"),
   Eli: ("esun", "lon", "ilo"),
   Elo: ("esun", "la", "olin"),
+  Wen: ("nimi", "esun", "nena"),
+  Wan: ("wasoweli", "a", "n"),
 )
 
 #let Lasina(str) = [
@@ -19,9 +21,15 @@
   )
 ]
 
+// TODO: error if spelling of name does not match hieroglyphs
+// TODO: error if name does not start with capital
+// TODO: warning if using nonstandard words
 #Lasina("
 Ela Eli Elo
 Ela Eli Elo
+Wen
+kokosila
+Wan
 ")
 
 #line(length: 100%)

@@ -264,7 +264,7 @@
   }
 }
 
-#let fancy-split-words(ext, txt) = {
+#let split-words(ext, txt) = {
   let lines = txt.split("\n")
   while lines.at(0) == "" {
     lines = lines.slice(1)
@@ -364,42 +364,7 @@
   paragraphs
 }
 
-#let split-words(txt) = {
-  let lines = txt.split("\n")
-  while lines.at(0) == "" {
-    lines = lines.slice(1)
-  }
-  let paragraphs = ()
-  let paragraph = ()
-  for line in lines {
-    if line == "" {
-      paragraphs.push(paragraph)
-      paragraph = ()
-      continue
-    }
-    let words = line.split(" ")
-    paragraph.push(words)
-  }
-  paragraphs.push(paragraph)
-  paragraphs
-}
-
-#let spacing(prev, cur) = {
-  (
-    "": (word: [], open: [], close: []),
-    word: (word: [ ], open: [ ], close: []),
-    open: (word: [], open: [], close: []),
-    close: (word: [ ], open: [ ], close: []),
-  ).at(prev).at(cur)
-}
-
-#let add-record(dic, k, v) = {
-  if v != none {
-    dic.insert(k, v)
-  }
-  dic
-}
-
+// TODO: incorporate this
 #let rarity-alert(word) = {
   let meta = nimi-ale.at(word, default: none)
   if meta == none {
@@ -415,36 +380,7 @@
   }
 }
 
-#let dispatch-Lasina(word, ext) = {
-  if "/" in word {
-    word = word.split("/").at(0)
-  }
-  let id = nimi-ale.at(word, default: none)
-  if id == none {
-    if word in ext {
-      (word, (t => t), "word", none)
-    } else if word in punctuation {
-      let id = punctuation.at(word)
-      (id.word, (t => t), id.group, none)
-    } else {
-      (word, (t => text(fill: red)[#t]), "word", rarity-alert(word))
-    }
-  } else {
-    (word, (t => t), id.group, rarity-alert(word))
-  }
-}
-
 #let title-markup(line) = {
-  if line.at(0) == "=" {
-    (16pt, true, line.slice(1))
-  } else if line.at(0) == "==" {
-    (14pt, true, line.slice(1))
-  } else {
-    (12pt, false, line)
-  }
-}
-
-#let fancy-title-markup(line) = {
   if line.at(0).type == "fmt" {
     if line.at(0).symb == "=" {
       (16pt, true, line.slice(1))
@@ -456,28 +392,6 @@
   } else {
     (12pt, false, line)
   }
-}
-
-
-#let sitelen-Lasina(ext-names, txt) = {
-  let structure = split-words(txt)
-  structure.map(paragraph => par(justify: true, {
-    let prev-category = ""
-    let alerts = ()
-    for line in paragraph {
-      let (size, bold, line) = title-markup(line)
-      text(size: size)[#bold-if(bold)[#{
-        for word in line {
-          let (word, style, category, err) = dispatch-Lasina(word, ext-names)
-          [#spacing(prev-category, category)]
-          [#style(word)]
-          if err != none { alerts.push(err) }
-          prev-category = category
-        }
-      }]]
-    }
-    for (_, a) in alerts { a }
-  }))
 }
 
 #let spacing-category(old, word) = {
@@ -494,12 +408,12 @@
   }
 }
 
-#let fancy-sitelen-Lasina(ext, txt) = {
-  let structure = fancy-split-words(ext, txt)
+#let sitelen-Lasina(ext, txt) = {
+  let structure = split-words(ext, txt)
   structure.map(paragraph => par(justify: true, {
     let prev-category = ""
     for line in paragraph.par {
-      let (size, bold, line) = fancy-title-markup(line)
+      let (size, bold, line) = title-markup(line)
       text(size: size)[#bold-if(bold)[#{
         for word in line {
           let (spacing, next) = spacing-category(prev-category, word)
@@ -523,12 +437,12 @@
   }))
 }
 
-#let fancy-sitelen-pona(ext, txt) = {
-  let structure = fancy-split-words(ext, txt)
+#let sitelen-pona(ext, txt) = {
+  let structure = split-words(ext, txt)
   structure.map(paragraph => par(justify: true, {
     let prev-category = ""
     for line in paragraph.par {
-      let (size, bold, line) = fancy-title-markup(line)
+      let (size, bold, line) = title-markup(line)
       text(size: size, font: "sitelen seli kiwen asuki")[#bold-if(bold)[#{
         for word in line {
           let (spacing, next) = spacing-category(prev-category, word)
@@ -551,102 +465,5 @@
     }
     for (_, a) in paragraph.err { a }
   }))
-}
-#let dispatch-pona(letter) = {
-  let (letter, variant) = detach-num(letter)
-  let id = nimi-ale.at(letter, default: (var: none))
-  let variant = clamp-var(variant, max: id.at("var", default: none))
-  (letter, variant)
-}
-
-#let sitelen-pona(ext-names, txt) = {
-  let structure = split-words(txt)
-  let already-occurred = ()
-  let ambiguous-initials = (:)
-  let out-structure = ()
-  for paragraph in structure {
-    let out-paragraph = []
-    let alerts = ()
-    for line in paragraph {
-      let (size, _, line) = title-markup(line)
-      out-paragraph += text(size: size,
-        font: "sitelen seli kiwen asuki"
-      )[#{
-        for word in line {
-          let word = if word in ext-names {
-            if word in already-occurred {
-              [[#{
-                let initial = ext-names.at(word).at(0)
-                let (initial, variant) = dispatch-pona(initial)
-                [ #initial#variant ]
-                let rare = rarity-alert(initial)
-                if rare != none { alerts.push(rare) }
-              }]]
-            } else {
-              if not ("A" <= word.at(0) and word.at(0) <= "Z") {
-                alerts.push(non-uppercase(word.at(0), word))
-              }
-              for l in word.slice(1) {
-                if not ("a" <= l and l <= "z") {
-                  alerts.push(non-lowercase(l, word))
-                }
-              }
-              let spelling = ext-names.at(word)
-              if word.len() != spelling.len() {
-                alerts.push(length-mismatch(word, spelling))
-              }
-              for (letter, hieroglyph) in word.clusters().zip(spelling) {
-                if lower(letter) != hieroglyph.at(0) {
-                  alerts.push(incorrect-spelling(letter, hieroglyph, word, spelling))
-                }
-              }
-              [[#{
-                for letter in ext-names.at(word) {
-                  let (letter, variant) = dispatch-pona(letter)
-                  [ #letter#variant ]
-                }
-              }]]
-              for letter in ext-names.at(word) {
-                let (letter, _) = detach-num(letter)
-                let rare = rarity-alert(letter)
-                if rare != none { alerts.push(rare) }
-              }
-              already-occurred.push(word)
-              let initial = {
-                let initial = ext-names.at(word).at(0)
-                let (initial, variant) = dispatch-pona(initial)
-                initial + if variant == none { "" } else { str(variant) }
-              }
-              if initial in ambiguous-initials {
-                let previous = ambiguous-initials.at(initial)
-                alerts.push(alert(red, "ambiguity("+word+","+previous+")")[#initial (initial of #word) is ambiguous due to also being the initial of #previous])
-              } else {
-                ambiguous-initials.insert(initial, word)
-              }
-            }
-          } else if word in punctuation {
-            let id = punctuation.at(word)
-            [#id.symb]
-          } else {
-            let (word, variant) = dispatch-pona(word)
-            if word in nimi-ale {
-              let id = nimi-ale.at(word)
-              [ #word#variant ]
-              let rare = rarity-alert(word)
-              if rare != none { alerts.push(rare) }
-            } else {
-              text(fill: red, font: "libertinus serif")[#word]
-              alerts.push(rarity-alert(word))
-            }
-          }
-          [ #word]
-        }
-        [\ ]
-      }]
-      out-paragraph += for (_, a) in alerts { a }
-    }
-    out-structure.push(out-paragraph)
-  }
-  out-structure
 }
 

@@ -15,23 +15,14 @@
 )
 
 #let Lasina(str) = [
-  /*#table(
+  #table(
     columns: (60%, 40%),
     inset: 10pt,
     stroke: none,
     ..pona.sitelen-Lasina(nimi-sin, str)
       .zip(pona.sitelen-pona(nimi-sin, str))
       .flatten()
-  )*/
-  #table(
-    columns: (50%, 50%),
-    inset: 10pt,
-    stroke: none,
-    ..pona.sitelen-pona(nimi-sin, str)
-      .zip(pona.fancy-sitelen-pona(nimi-sin, str))
-      .flatten()
   )
-
 ]
 
 // TODO: error if spelling of name does not match hieroglyphs
@@ -65,21 +56,12 @@ A
 )
 
 #let Lasina(str) = [
-  /*#table(
+  #table(
     columns: (60%, 40%),
     inset: 10pt,
     stroke: none,
     ..pona.sitelen-Lasina(nimi-sin, str)
       .zip(pona.sitelen-pona(nimi-sin, str))
-      .flatten()
-  )
-  */
-  #table(
-    columns: (50%, 50%),
-    inset: 10pt,
-    stroke: none,
-    ..pona.sitelen-pona(nimi-sin, str)
-      .zip(pona.fancy-sitelen-pona(nimi-sin, str))
       .flatten()
   )
 ]

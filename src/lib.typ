@@ -3,6 +3,13 @@
 #let sin(var: none) = (group: "word", rarity: "sin", maxvar: var)
 #let punct(word, symb, spacing: "close") = (word: word, symb: symb, group: spacing)
 
+#let font-Lasina(t) = text(font: "libertinus serif")[#t]
+#let font-pona(t) = text(font: "sitelen seli kiwen asuki")[#t]
+
+#let bold-if(b, t) = {
+  if b [*#t*] else [ #t ]
+}
+
 #let clamp-var(var, max: none) = {
   if max == none or var < 1 or var > max {
     none
@@ -11,51 +18,59 @@
   }
 }
 
+#let detach-num(word) = {
+  if "/" in word {
+    let (word, num) = word.split("/")
+    (word, int(num))
+  } else {
+    (word, 1)
+  }
+}
+
 #let pini = <tp-pini>
 #let log-accum = state("log", (:))
 #let log() = context {
-  let errors = log-accum.at(<tp-pini>)
+  let errors = log-accum.at(<tp-pini>).values().sorted(key: k => k.at(0))
   if errors != () {
-    text(fill: red)[*There are compilation errors*\ ]
-    for (_, msg) in log-accum.at(<tp-pini>) [
-      #h(1cm) #msg \
+    text(fill: red)[*pakala lili li lon lipu ni*\ ]
+    for (_, _, msg) in errors [
+      - #msg \
     ]
   }
 }
-#let alert(color, uid, msg) = {
+#let alert(color, uid, badness, msg) = {
   (uid, log-accum.update(acc => {
     if uid not in acc {
-      acc.insert(uid, text(fill: color)[* #msg *])
+      acc.insert(uid, (badness, uid, text(fill: color)[*#msg*]))
     }
     acc
   }))
 }
 
-#let incorrect-spelling(letter, hieroglyph, word, spelling) = {
-  let tag = "spelling("+letter+","+hieroglyph+","+word+")"
-  alert(red, tag)[#hieroglyph (#spelling) does not correctly spell out #letter (#word)]
-}
-
 #let non-uppercase(initial, word) = {
   let tag = "uppercase("+word+")"
-  alert(red, tag)[#initial should be uppercase in #word]
-}
-
-#let length-mismatch(word,spelling) = {
-  let tag = "len("+word+")"
-  alert(red, tag)[#word should have the same number of characters as #spelling]
+  alert(red, tag, 3)["#initial" lon "#word" li lili ike]
 }
 
 #let non-lowercase(letter, word) = {
   let tag = "lowercase("+letter+","+word+")"
-  alert(red, tag)[#letter should be lowercase in #word]
+  alert(red, tag, 4)["#letter" lon "#word" li suli ike]
+}
+
+#let length-mismatch(word,spelling) = {
+  let tag = "len("+word+")"
+  alert(red, tag, 2)["#word" li ante nanpa sitelen tawa "#font-pona[[#{for chr in spelling { [#chr ] }}]]"]
 }
 
 #let sitelen-ala(word) = {
   let tag = "sitelen("+word+")"
-  alert(red, tag)[#word does not have a hieroglyph]
+  alert(red, tag, 1)["#word" li lon ala nasin sitelen pona]
 }
 
+#let incorrect-spelling(letter, hieroglyph, word, spelling) = {
+  let tag = "spelling("+letter+","+hieroglyph+","+word+")"
+  alert(red, tag, 0)["#hieroglyph" (#font-pona[#hieroglyph]) lon "#font-pona[[#{for chr in spelling { [#chr ] }}]]" li ante tawa "#letter" lon "#word"]
+}
 
 #let nimi-ale = (
   a: pu(),
@@ -239,8 +254,25 @@
   yupekosi: sin(),
 )
 
+#let rarity-alert(word, ctx) = {
+  let meta = nimi-ale.at(word, default: none)
+  let tag = "rarity-"+ctx+"("+word+")"
+  if meta == none {
+    alert(red, tag, 0)["#word" li lon ala]
+  } else if meta.group != "word" {
+    none
+  } else if meta.rarity == "pu" {
+    none
+  } else if meta.rarity == "ku" {
+    alert(orange, tag, 6)["#word" (#font-pona(word)) li lon pu ala]
+  } else if meta.rarity == "sin" {
+    alert(orange, tag, 5)["#word" (#font-pona(word)) li lon ku suli ala]
+  } else {
+    panic[Rarity #meta.rarity is malformed]
+  }
+}
+
 #let punctuation = (
-  // Punctuation
   te: punct("\"", " te ", spacing: "open"),
   to: punct("\"", " to "),
   ".": punct(".", []),
@@ -250,19 +282,6 @@
   "~": punct("", h(2.5mm)),
   "~~": punct("", h(5mm)),
 )
-
-#let bold-if(b, t) = {
-  if b [* #t *] else [ #t ]
-}
-
-#let detach-num(word) = {
-  if "/" in word {
-    let (word, num) = word.split("/")
-    (word, int(num))
-  } else {
-    (word, 1)
-  }
-}
 
 #let split-words(ext, txt) = {
   let lines = txt.split("\n")
@@ -289,6 +308,8 @@
         (word, 1)
       }
       if word in nimi-ale {
+        let rare = rarity-alert(word, "nimi")
+        if rare != none { errors.push(rare) }
         let id = nimi-ale.at(word)
         let ans = (
           type: "word",
@@ -321,6 +342,8 @@
                 errors.push(sitelen-ala(chara))
                 "???"
               } else {
+                let rare = rarity-alert(word, "sitelen")
+                if rare != none { errors.push(rare) } 
                 let id = nimi-ale.at(chara)
                 let variant = clamp-var(variant, max: id.maxvar)
                 chara + if variant == none { "" } else { str(variant) }
@@ -352,7 +375,7 @@
       } else if word == "==" {
         words.push((type: "fmt", symb: "==")) 
       } else {
-        errors.push(alert(red, "rarity("+word+")")["#word" li nimi ala])
+        errors.push(rarity-alert(word, "nimi"))
         words.push((type: "unk", word: word))
       }
     }
@@ -362,22 +385,6 @@
     paragraphs.push(paragraph)
   }
   paragraphs
-}
-
-// TODO: incorporate this
-#let rarity-alert(word) = {
-  let meta = nimi-ale.at(word, default: none)
-  if meta == none {
-    alert(red, "rarity("+word+")")["#word" li nimi ala]
-  } else if meta.group != "word" {
-    none
-  } else if meta.rarity == "pu" {
-    none
-  } else if meta.rarity == "ku" {
-    alert(yellow, "rarity("+word+")")["#word" li nimi pu ala]
-  } else {
-    alert(yellow, "rarity("+word+")")["#word" li nimi pi ku suli ala]
-  }
 }
 
 #let title-markup(line) = {
@@ -426,7 +433,7 @@
           } else if word.type == "punct" {
             [#word.word]
           } else if word.type == "unk" {
-            [#text(fill: red)[#word.word]]
+            [#word.word]
           } else {
             panic[#word.type]
           }
@@ -443,7 +450,7 @@
     let prev-category = ""
     for line in paragraph.par {
       let (size, bold, line) = title-markup(line)
-      text(size: size, font: "sitelen seli kiwen asuki")[#bold-if(bold)[#{
+      text(size: size)[#font-pona[#bold-if(bold)[#{
         for word in line {
           let (spacing, next) = spacing-category(prev-category, word)
           [#spacing]
@@ -455,12 +462,12 @@
           } else if word.type == "punct" {
             [#word.symb]
           } else if word.type == "unk" {
-            [#text(fill: red, font: "libertinus serif")[[#word.word]]]
+            [#text(fill: red)[#font-Lasina[#{sym.angle.l}#{word.word}#{sym.angle.r}]]]
           } else {
             panic[#word.type]
           }
         }
-      }]]
+      }]]]
       [\ ]
     }
     for (_, a) in paragraph.err { a }

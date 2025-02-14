@@ -1,7 +1,5 @@
 #import "lib.typ" as pona
 
-#pona.log()
-
 #let nimi-sin = (
   Ela: ("esun", "linja", "awen"),
   Eli: ("esun", "lon", "ilo"),
@@ -25,20 +23,17 @@
   )
 ]
 
-// TODO: error if spelling of name does not match hieroglyphs
-// TODO: error if name does not start with capital
-// TODO: warning if using nonstandard words
 #Lasina("
 Ela Eli Elo
 Ela Eli Elo
 Wen
 kokosila
 Wan
-ewe
-Ewe
-EWe
+ewe Ewe EWe
 A
 ")
+
+#pona.log()
 
 #line(length: 100%)
 

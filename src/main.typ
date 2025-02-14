@@ -8,17 +8,30 @@
   Elo: ("esun", "la", "olin"),
   Wen: ("nimi", "esun", "nena"),
   Wan: ("wasoweli", "a", "n"),
+  ewe: ("epiku", "weka", "epiku"),
+  Ewe: ("epiku", "weka", "epiku", "sona"),
+  EWe: ("epiku", "weka", "epiku"),
+  A: ("aaoeusnth",),
 )
 
 #let Lasina(str) = [
-  #table(
+  /*#table(
     columns: (60%, 40%),
     inset: 10pt,
     stroke: none,
     ..pona.sitelen-Lasina(nimi-sin, str)
       .zip(pona.sitelen-pona(nimi-sin, str))
       .flatten()
+  )*/
+  #table(
+    columns: (50%, 50%),
+    inset: 10pt,
+    stroke: none,
+    ..pona.sitelen-pona(nimi-sin, str)
+      .zip(pona.fancy-sitelen-pona(nimi-sin, str))
+      .flatten()
   )
+
 ]
 
 // TODO: error if spelling of name does not match hieroglyphs
@@ -30,6 +43,10 @@ Ela Eli Elo
 Wen
 kokosila
 Wan
+ewe
+Ewe
+EWe
+A
 ")
 
 #line(length: 100%)
@@ -48,12 +65,21 @@ Wan
 )
 
 #let Lasina(str) = [
-  #table(
+  /*#table(
     columns: (60%, 40%),
     inset: 10pt,
     stroke: none,
     ..pona.sitelen-Lasina(nimi-sin, str)
       .zip(pona.sitelen-pona(nimi-sin, str))
+      .flatten()
+  )
+  */
+  #table(
+    columns: (50%, 50%),
+    inset: 10pt,
+    stroke: none,
+    ..pona.sitelen-pona(nimi-sin, str)
+      .zip(pona.fancy-sitelen-pona(nimi-sin, str))
       .flatten()
   )
 ]
@@ -115,7 +141,7 @@ tenpo kama la ilo utala ale
 #Lasina("
 == akesi ike pi lawa mute lon ma Leneja
 
-jan Ekalese li kama tawa ona la
+jan Ekalese li tawa ona la
 jan Elitese
 ~~ li pilin monsuta tan selo soweli ,
 ~~ li toki e ni :
@@ -175,7 +201,7 @@ tenpo sike wan
 ~ la soweli li wile lape
 ~ la jan Ekalese li lanpan e ona .
 
-tenpo lili la meli sewi Atemisi li kama tawa jan Ekalese .
+tenpo lili la meli sewi Atemisi li tawa jan Ekalese .
 ona li pilin utala , li toki e ni :
 te o lanpan ala e soweli ni mi . to
 la jan Ekalese li toki e ni :
@@ -201,8 +227,11 @@ jan Elitese li pilin ike , li pilin apeja tan ni .
 #Lasina("
 == soweli wawa lon ma Elimantijan
 
-jan Elitese toki e ni tawa jan Ekalese :
-te o pana e soweli wawa lon ma Elimantijan 
+jan Elitese toki e ni
+~ tawa jan Ekalese :
+te o lanpan e soweli wawa lon ma Elimantijan .
+~ o moli ala e ona .
+~ la o pana e ona tawa mi . to
 ")
 
 #Lasina("

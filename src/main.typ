@@ -33,7 +33,7 @@ ewe Ewe EWe
 A
 ")
 
-#pona.log()
+#pona.pakala.log()
 
 #line(length: 100%)
 
@@ -48,6 +48,9 @@ A
   Ijolasu: ("ilo", "jan", "o", "laso", "ala", "suwi", "uta"),
   Selineja: ("sewi", "en", "laso", "ijo", "nasa", "en", "jelo", "ante"),
   Atemisi: ("alasa", "telo", "esun", "meli", "ilo", "sewi", "ilo"),
+  Elimantijan: ("en", "lete", "insa", "ma", "alasa", "nasin", "telo", "ijo", "jo", "alasa", "nasin"),
+  Kilon: ("kiwen", "ilo", "linja", "olin", "nasin"),
+  Akejan: ("awen", "ko", "e", "jaki", "ante", "nasin"),
 )
 
 #let Lasina(str) = [
@@ -202,17 +205,49 @@ jan Elitese li pilin ike , li pilin apeja tan ni .
 ")
 
 #Lasina("
-== soweli wawa lon ma Elimantijan
+== soweli wawa
+== lon ma Elimantijan
 
 jan Elitese toki e ni
 ~ tawa jan Ekalese :
 te o lanpan e soweli wawa lon ma Elimantijan .
 ~ o moli ala e ona .
 ~ la o pana e ona tawa mi . to
+
+jan Ekalese li tawa ma Elimantijan .
+nasin la ona li lukin e jan soweli Kilon .
+jan Ekalese li toki e ni tawa jan soweli Kilon :
+te mi wile lanpan e soweli wawa wan .
+~ ona li wawa mute , li tawa wawa .
+~ o pana e isipin pona tawa mi . to
+jan soweli Kilon li toki e ni :
+te n .
+~ noka ona li lete la soweli li ken ala tawa .
+~ la sina ken lanpan e ona . to
+
+isipin ni li pona .
+jan Ekalese li tawa monsi soweli lon ma lete
+~ la soweli li awen ,
+~ la jan Ekalese li lanpan e ona ,
+~~ li tawa jan Elitese e ona .
 ")
 
 #Lasina("
 == tomo soweli jaki pi jan Akejan
+
+lon ma Akejan
+~ la jan lawa li jo e soweli mani mute .
+soweli ni li insa tomo soweli ,
+~ li pana e ko jaki mute .
+jan Elitese li wile e ni :
+~ jan Ekalese
+~ li jaki ala e tomo soweli .
+pali ni li suli tan tomo soweli li jaki mute .
+
+jan Ekalese li kepeken kiwen suli ,
+~ li pana e nasin ante tawa telo nasin suli wan .
+telo nasin li lanpan e ko jaki ,
+~ la tomo soweli li jaki ala a !
 ")
 
 #Lasina("
@@ -247,4 +282,4 @@ te o lanpan e soweli wawa lon ma Elimantijan .
 == pini
 ")
 
-#pona.pini
+#pona.pakala.pini

@@ -1,3 +1,20 @@
+// Collection of definitions relating to reporting compilation warnings
+// (we emit very few actual compilation errors --- as in, `panic`s ---
+// but we provide a method of displaying within the document a log of all
+// warnings sorted by severity)
+//
+// Rough usage:
+// - anywhere in the document, invoke `log()`.
+//   This is where the log of all warnings will be inserted.
+// - at the end of the document, place `pini`.
+//   This will create a tag that lets `log()` know when all errors have been
+//   received.
+// - in functions, invoke `alert` to add all problems to the log.
+//   Warnings are identified by a tag and a severity.
+//   The tag determines when two warnings are identical, so that the log is not
+//   composed of 100 copies of the exact same error message.
+//   The severity decides the order in which they appear.
+
 #import "nimi.typ"
 #import "sitelen.typ"
 

@@ -1,6 +1,27 @@
 // List of known words and associated metadata.
 //
-// group: word | open | close
+// The vocabulary tuples are composed of a subset of the keys
+// - group : "word", "open", "close"
+// - rarity : "pu", "ku", "sin"
+// - maxvar : int >= 1
+// - word : content
+// - symb : content
+//
+// More specifically, words of vocabulary have group, rarity, maxvar,
+// and items of punctuation have group, symb, word.
+//
+// Vocabulary:
+// - group = "word"
+// - rarity = "pu"   -> common word
+//          = "ku"   -> uncommon word, usage will result in a mild warning
+//          = "sin"  -> obscure word, usage will result in a severe warning
+// - maxvar          -> how many variants to the hieroglyph are there
+//
+// Punctuation
+// - group = "close" -> space goes after this symbol
+//         = "open"  -> space goes before this symbol
+// - word            -> how this punctuation is rendered in latin font
+// - symb            -> how this punctuation is rendered in hieroglyphs
 
 // This word is in the base vocabulary.
 #let pu(var: none) = (
@@ -23,24 +44,31 @@
   maxvar: var,
 )
 
-// Punctuation symbol.
+// This is a punctuation symbol.
 #let punct(word, symb, spacing: "close") = (
   word: word,
   symb: symb,
   group: spacing,
 )
 
+// Set of punctuation markers.
+// This is kind of a fit-all category of markup symbols that are trivial to render
+// but aren't rendered identically in latin or sitelen pona.
+// This is why "~" and "~~" which aren't *really* punctuation are here
+// (because they're trivial) but "=" and "==" are hardcoded elsewhere
+// (because those are much less easy to handle).
 #let punctuation = (
   te: punct("\"", " te ", spacing: "open"),
   to: punct("\"", " to "),
-  ".": punct(".", []),
-  ":": punct(":", []),
-  "!": punct("!", []),
-  ",": punct(",", []),
+  ".": punct(".", ""),
+  ":": punct(":", ""),
+  "!": punct("!", ""),
+  ",": punct(",", ""),
   "~": punct("", h(2.5mm)),
   "~~": punct("", h(5mm)),
 )
 
+/// Record of all existing words.
 #let ale = (
   a: pu(),
   akesi: pu(var: 2),

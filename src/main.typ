@@ -85,7 +85,7 @@ ike la jan Ela li pana e usawi nasa tawa ona .
 jan Ekalese li pilin nasa mute , li isipin ike ,
 ~ li moli e meli ona e jan lili ona .
 
-jan Ekalese li pilin ike mute tan ni .
+jan Ekalese li pilin ike mute tan ni :
 ona li wile ala moli e kulupu ona .
 ona li tawa jan lawa Elitese ,
 ~ li toki e ni :
@@ -201,7 +201,7 @@ ni la jan Elitese li ken ala jo e soweli sewi .
 jan Ekalese li toki e ni tawa ona :
 te sina ken jo ala e soweli tan
 ~ sina wawa ala . to
-jan Elitese li pilin ike , li pilin apeja tan ni .
+tan ni la jan Elitese li pilin ike , li pilin apeja .
 ")
 
 #Lasina("
@@ -230,6 +230,16 @@ jan Ekalese li tawa monsi soweli lon ma lete
 ~ la soweli li awen ,
 ~ la jan Ekalese li lanpan e ona ,
 ~~ li tawa jan Elitese e ona .
+
+jan Ekalese li tawa la jan soweli Kilon li lukin e ilo kipisi pi jan Ekalese .
+ilo kipisi li jo e telo moli pi akesi ike .
+pakala lili la ona li kipisi e palisa luka ona .
+ni li ike suli tan telo moli li moli ale e jan ale .
+jan soweli Kilon li jan wawa , li moli ala .
+taso ona li pilin ike mute , li toki wawa e ni :
+te jan Ekalese o !
+~ kipisi sina li ike tawa mi .
+~ tenpo kama la o ike tawa sina a ! to
 ")
 
 #Lasina("
@@ -238,16 +248,21 @@ jan Ekalese li tawa monsi soweli lon ma lete
 lon ma Akejan
 ~ la jan lawa li jo e soweli mani mute .
 soweli ni li insa tomo soweli ,
-~ li pana e ko jaki mute .
+~ li pana e ko mute pi jaki mute .
 jan Elitese li wile e ni :
 ~ jan Ekalese
 ~ li jaki ala e tomo soweli .
-pali ni li suli tan tomo soweli li jaki mute .
+pali ni li ike tan tomo soweli li jaki mute .
 
 jan Ekalese li kepeken kiwen suli ,
 ~ li pana e nasin ante tawa telo nasin suli wan .
 telo nasin li lanpan e ko jaki ,
 ~ la tomo soweli li jaki ala a !
+
+ni li pona tan pali suli ni li pini lon tenpo lili .
+taso jan Elitese li pilin pona ala .
+ona li toki e ni :
+te tenpo kama la , pali suli ona li ike mute a . to
 ")
 
 #Lasina("

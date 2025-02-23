@@ -51,6 +51,8 @@ A
   Elimantijan: ("en", "lete", "insa", "ma", "alasa", "nasin", "telo", "ijo", "jo", "alasa", "nasin"),
   Kilon: ("kiwen", "ilo", "linja", "olin", "nasin"),
   Akejan: ("awen", "ko", "e", "jaki", "ante", "nasin"),
+  Sinpalijan: ("sewi", "ijo", "nasin", "poki", "ala", "linja", "ijo", "jan", "ala", "nasin"),
+  Atena: ("alasa", "taso", "esun", "nasin", "alasa"),
 )
 
 #let SitelenTu(str) = [
@@ -67,6 +69,10 @@ A
 #SitelenTu("
 = pali suli luka luka tu
 = pi jan Elakese
+")
+
+#SitelenTu("
+== jan ale
 ")
 
 #SitelenTu("
@@ -158,7 +164,7 @@ jan Ijolasu li kama ,
 lawa akesi li ken mama ala .
 akesi ike li jo ala e lawa , li moli .
 telo loje insa pi akesi ike li telo moli .
-jan Elakese li pana e telo moli tawa ilo kipisi ona .
+jan Elakese li pana e telo moli tawa ilo kipisi waso ona .
 tenpo kama la jan Elakese li ken moli e soweli ala
 ~ tan telo moli lon ilo ona .
 ")
@@ -242,7 +248,8 @@ jan Elakese li tawa monsi soweli lon ma lete
 ~ la jan Elakese li lanpan e ona ,
 ~~ li tawa jan Elitese e ona .
 
-jan Elakese li tawa la jan soweli Kilon li lukin e ilo kipisi pi jan Elakese .
+jan Elakese li tawa la jan soweli Kilon
+~ li lukin e ilo kipisi pi jan Elakese .
 ilo kipisi li jo e telo moli pi akesi ike .
 pakala lili la ona li kipisi e palisa luka ona .
 ni li ike suli tan telo moli li moli ale e jan ale .
@@ -273,11 +280,48 @@ telo nasin li lanpan e ko jaki ,
 ni li pona tan pali suli ni li pini lon tenpo lili .
 taso jan Elitese li pilin pona ala .
 ona li toki e ni :
-te tenpo kama la , pali suli ona li ike mute a . to
+te tenpo kama la , pali suli ona li ike mute a !
+~ kin la jan ante li ken ala pali lon poka sina . to
 ")
 
 #SitelenTu("
-== waso ike pi moku jan lon ma Sinpalijan
+== waso ike pi moku jan
+== lon ma Sinpalijan
+
+lon poka pi telo Sinpalijan la waso mute li lon .
+waso ni li moku e jan ,
+~ li jo e nena sinpin kiwen ,
+~ li mute wawa ,
+~ li pana monsuta tawa jan ale .
+jan Elitese li toki e ni
+~ tawa jan Elakese :
+te sina wan taso o tawa telo Sinpalijan .
+~ la o moli e waso ike ale . to
+
+jan Elakese li tawa lon telo Sinpalijan la
+~ ona ken ala tawa tomo waso tan
+~ telo li suli .
+meli sewi Atena li lukin e jan Elakese ,
+~ li toki e ni :
+te mi wile pona tawa ona .
+~ o kepeken e ilo kalama ni .
+~ tan pakala la waso ike li kama ,
+~ la sina ken moli e ona . to
+
+taso jan Elakese li toki e ni :
+te mi ken ala kepeken e ilo ona .
+~ jan lawa Elitese li toki e ni :
+~ jan ante li ken ala pana e pona tawa mi . to
+la meli sewi Atena li toki e ni :
+te mi jan ala . mi meli sewi .
+~ sina ken kepeken e ilo ni . to
+
+jan Elakese li kalama kepeken ilo ni .
+waso ike ale li kute e kalama ,
+~ li pilin monsuta ,
+~ li tawa sewi .
+jan Elakese li tawa wawa e ilo kipisi waso tawa sewi .
+waso ale li moli tan ilo kipisi ona .
 ")
 
 #SitelenTu("

@@ -330,6 +330,13 @@ waso ale li moli tan ilo kipisi ona .
 
 #SitelenTu("
 == soweli tawa mute pi jan Tijomete
+
+ma ante la jan lawa Tijomete li lon .
+soweli ona li suli , li wawa , li moku e jan .
+jan li ike tawa jan lawa Tijomete la
+~ soweli li moku e ona .
+pali sin ni la jan Elakese
+~ li wile lanpan e soweli mute ni .
 ")
 
 #SitelenTu("
@@ -341,7 +348,7 @@ waso ale li moli tan ilo kipisi ona .
 ")
 
 #SitelenTu("
-== kili jelo pi jan Sepelite
+== kili jelo pi jan mute Sepelite
 ")
 
 #SitelenTu("

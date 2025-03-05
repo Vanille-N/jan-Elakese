@@ -53,6 +53,9 @@ A
   Akejan: ("awen", "ko", "e", "jaki", "ante", "nasin"),
   Sinpalijan: ("sewi", "ijo", "nasin", "poki", "ala", "linja", "ijo", "jan", "ala", "nasin"),
   Atena: ("alasa", "taso", "esun", "nasin", "alasa"),
+  Keta: ("ken", "en", "taso", "akesi"),
+  Mino: ("moli", "oko", "nena", "oko"),
+  Tijomete: ("toki", "ijo", "jo", "ona", "moli", "esun", "toki", "esun"),
 )
 
 #let SitelenTu(str) = [
@@ -285,7 +288,7 @@ te tenpo kama la , pali suli ona li ike mute a !
 ")
 
 #SitelenTu("
-== waso ike pi moku jan
+== waso ike mute pi moku jan
 == lon ma Sinpalijan
 
 lon poka pi telo Sinpalijan la waso mute li lon .
@@ -326,17 +329,68 @@ waso ale li moli tan ilo kipisi ona .
 
 #SitelenTu("
 == soweli mani lon ma Keta
+
+sin la jan Elakese
+~ li wile lanpan e soweli mani lon ma Keta .
+ma Keta li lon ma suli ante .
+tan ni la jan Elakese li tawa kepeken tomo tawa telo ,
+~ li kama lon ma ante .
+ni la ona li toki tawa jan lawa Mino ,
+~ taso jan Mino li toki e ni :
+te mi ken ala pana e pona tawa sina .
+~ sina wan taso li wile lanpan e soweli .
+~ o pona tawa sina . to
+
+jan Elakese li luka e palisa lawa pi soweli mani .
+la soweli li utala .
+taso soweli la jan Elakese li wawa mute .
+ona li kama jo e soweli ,
+~ li tawa jo e soweli tawa jan Elitese .
 ")
 
 #SitelenTu("
 == soweli tawa mute pi jan Tijomete
 
-ma ante la jan lawa Tijomete li lon .
+ma ante la jan Tijomete li lawa .
 soweli ona li suli , li wawa , li moku e jan .
 jan li ike tawa jan lawa Tijomete la
 ~ soweli li moku e ona .
+jan pi ma ante li kama la ona li moku kin a !
 pali sin ni la jan Elakese
 ~ li wile lanpan e soweli mute ni .
+
+ma ni li ma lili lon meso pi telo suli .
+soweli li lon insa pi tomo soweli .
+linja kiwen li linluwi e anpa lawa ona .
+tan ni la ona li ken ala tawa .
+jan Elakese li toki tawa jan Tijomete .
+jan Tijomete li wile e ni :
+~ soweli ona li moku e jan Elakese .
+taso jan Elakese li sona e ni .
+
+tenpo pimeja kama la jan Elakese li lape ala .
+tan ni la jan Tijomete li ken ala moli e ona .
+jan Tijomete li lape la
+~ jan Elakese li kalama ala ,
+~~ li tawa soweli ,
+~~ li kipisi e linja ona .
+la soweli li ken tawa .
+soweli li wile moku ,
+~ li moku e jan anpa pi jan Tijomete .
+jan Tijomete li pini lape la
+~ jan anpa ona li moli a !
+ona li pilin monsuta .
+la soweli ona li moku e ona .
+
+pini la soweli li wile ala moku kin .
+jan Elakese li pake e uta ona tan
+~ ona li ken ala moku e jan kin .
+ona li jo e soweli tawa ma mama ona ,
+~ li pana e soweli tawa jan Elitese .
+
+soweli li monsuta , li utala .
+tan ni la jan Elitese li moli sewi e ona ,
+~ li pana e toki sewi tawa jan sewi Sese .
 ")
 
 #SitelenTu("

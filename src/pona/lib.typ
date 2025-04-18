@@ -19,7 +19,7 @@
   }
 }
 
-#let split-words(ext, txt) = {
+#let nimi-kipisi(ext, txt) = {
   let lines = txt.split("\n")
   let paragraphs = ()
   let paragraph = ()
@@ -141,8 +141,7 @@
   }
 }
 
-#let sitelen-Lasina(ext, txt) = {
-  let structure = split-words(ext, txt)
+#let sitelen-Lasina(structure) = {
   structure.map(paragraph => par(justify: true, {
     let prev-category = ""
     for line in paragraph.par {
@@ -170,8 +169,7 @@
   }))
 }
 
-#let sitelen-pona(ext, txt) = {
-  let structure = split-words(ext, txt)
+#let sitelen-pona(structure) = {
   structure.map(paragraph => par(justify: true, {
     let prev-category = ""
     for line in paragraph.par {

@@ -1,4 +1,4 @@
-#import "lib.typ" as pona
+#import "pona/lib.typ" as pona
 
 #let nimi-sin = (
   Ela: ("esun", "linja", "awen"),
@@ -13,12 +13,13 @@
 )
 
 #let SitelenTu(str) = [
+  #let nimi = pona.nimi-kipisi(nimi-sin, str)
   #table(
     columns: (60%, 40%),
     inset: 10pt,
     stroke: none,
-    ..pona.sitelen-Lasina(nimi-sin, str)
-      .zip(pona.sitelen-pona(nimi-sin, str))
+    ..pona.sitelen-Lasina(nimi)
+      .zip(pona.sitelen-pona(nimi))
       .flatten()
   )
 ]
@@ -59,12 +60,13 @@ A
 )
 
 #let SitelenTu(str) = [
+  #let nimi = pona.nimi-kipisi(nimi-sin, str)
   #table(
     columns: (60%, 40%),
     inset: 10pt,
     stroke: none,
-    ..pona.sitelen-Lasina(nimi-sin, str)
-      .zip(pona.sitelen-pona(nimi-sin, str))
+    ..pona.sitelen-Lasina(nimi)
+      .zip(pona.sitelen-pona(nimi))
       .flatten()
   )
 ]

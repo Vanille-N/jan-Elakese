@@ -1,38 +1,38 @@
 #import "pona/lib.typ" as pona
 
-#let nimi-sin = (
-  Ela: ("esun", "linja", "awen"),
-  Eli: ("esun", "lon", "ilo"),
-  Elo: ("esun", "la", "olin"),
-  Wen: ("nimi", "esun", "nena"),
-  Wan: ("wasoweli", "a", "n"),
-  ewe: ("epiku", "weka", "epiku"),
-  Ewe: ("epiku", "weka", "epiku", "sona"),
-  EWe: ("epiku", "weka", "epiku"),
-  A: ("aaoeusnth",),
-)
+//#let nimi-sin = (
+//  Ela: ("esun", "linja", "awen"),
+//  Eli: ("esun", "lon", "ilo"),
+//  Elo: ("esun", "la", "olin"),
+//  Wen: ("nimi", "esun", "nena"),
+//  Wan: ("wasoweli", "a", "n"),
+//  ewe: ("epiku", "weka", "epiku"),
+//  Ewe: ("epiku", "weka", "epiku", "sona"),
+//  EWe: ("epiku", "weka", "epiku"),
+//  A: ("aaoeusnth",),
+//)
 
-#let SitelenTu(str) = [
-  #let nimi = pona.nimi-kipisi(nimi-sin, str)
-  #table(
-    columns: (60%, 40%),
-    inset: 10pt,
-    stroke: none,
-    ..pona.sitelen-Lasina(nimi)
-      .zip(pona.sitelen-pona(nimi))
-      .flatten()
-  )
-]
+//#let SitelenTu(str) = [
+//  #let nimi = pona.nimi-kipisi(nimi-sin, str)
+//  #table(
+//    columns: (60%, 40%),
+//    inset: 10pt,
+//    stroke: none,
+//    ..pona.sitelen-Lasina(nimi)
+//      .zip(pona.sitelen-pona(nimi))
+//      .flatten()
+//  )
+//]
 
-#SitelenTu("
-Ela Eli Elo
-Ela Eli Elo
-Wen
-kokosila
-Wan
-ewe Ewe EWe
-A
-")
+//#SitelenTu("
+//Ela Eli Elo
+//Ela Eli Elo
+//Wen
+//kokosila
+//Wan
+//ewe Ewe EWe
+//A
+//")
 
 #pona.pakala.log()
 
@@ -55,8 +55,15 @@ A
   Sinpalijan: ("sewi", "ijo", "nasin", "poki", "ala", "linja", "ijo", "jan", "ala", "nasin"),
   Atena: ("alasa", "taso", "esun", "nasin", "alasa"),
   Keta: ("ken", "en", "taso", "akesi"),
-  Mino: ("moli", "oko", "nena", "oko"),
+  Mino: ("moli", "ilo", "nena", "oko"),
   Tijomete: ("toki", "ijo", "jo", "ona", "moli", "esun", "toki", "esun"),
+  Ipolita: ("isipin", "poki", "olin", "lawa", "isipin", "tawa", "awen"),
+  Amason: ("awen", "meli", "awen", "sona", "olin", "nena"),
+  Kejon: ("kala", "e", "jo", "oko", "nimi"),
+  Eliteja: ("e", "lili", "ijo", "telo", "e", "jo", "ala"),
+  Apolo: ("ante", "pali", "oko", "linja", "oko"),
+  Alasu: ("awen", "laso", "awen", "sona", "uta"),
+  Sepelite: ("sona", "esun", "pali", "esun", "linja", "ilo", "tawa", "esun"),
 )
 
 #let SitelenTu(str) = [
@@ -397,14 +404,169 @@ tan ni la jan Elitese li moli sewi e ona ,
 
 #SitelenTu("
 == len linja pi jan Ipolita
+
+meli lili pi jan lawa Elitese li kute e ni :
+~ ma ante la meli Ipolita li jo e len pi kiwen jelo .
+~ len ni li pona wawa lukin .
+jan Elitese li toki e ni
+~ tawa jan Elakese la
+~ jan Elakese li wile lanpan e len ni .
+
+meli Ipolita li lawa e
+~ kulupu meli Amason lon ma kasi .
+jan ale Amason li meli , li pona lukin .
+jan Elakese en jan pona ona li tawa ma Amason .
+nasin la ona li moli e soweli ike mute
+~ tan ona li wile pana e ijo wa tawa meli Amason .
+
+ma Amason la jan Elakese li toki tawa meli Ipolita .
+ona li toki olin , li pana e ijo pona tawa ona .
+ni la meli Ipolita li pilin olin , li pilin wa .
+te mi ken lanpan e len linja ona anu seme to
+toki ni la jan Ipolita li pilin pona .
+ona li toki e ni :
+te pona .
+~ tenpo suno kama la mi pana e len linja pi kiwen jelo tawa sina to
+
+taso meli sewi Ela li wile ala e ni .
+ona li wile ike tawa jan Elakese .
+ona li kama lukin sama meli Amason ,
+~ li toki ike pi jan Elakese .
+te jan Elakese en jan anpa ona li ike .
+~ mije ale li wile ike tawa sina ale .
+~ ona li wile moli e ona . to
+ni la jan Ela li pana e pilin utala tawa meli Amason ale .
+
+meli Amason ale li kama jo e ilo utala ona ,
+~ li tawa monsi pi soweli tawa ona ,
+~ li tawa wawa kulupu pi jan Elakese .
+ona li lukin e ni la jan Elakese li toki insa e ni :
+te meli Ipolita li toki lon ala .
+~ ona li wile ike tawa mi . to
+la ona li toki e ni :
+te jan pona mi ale o !
+~ meli Amason li wile moli e mi ale .
+~ o kama jo e ilo utala ona .
+~ o utala a !
+~ o moli e ona . to
+
+meli Amason la kulupu pi jan Elakese li wawa mute .
+tenpo lili la meli Amason mute li moli .
+meli ante li pakala , li ken utala ala .
+jan Elakese li moli e meli Ipolita ,
+~ li lanpan e len linja ona .
+ni ale tan toki pi lon ala pi meli sewi Ela a !
+tenpo suno kama la kulupu pi jan Elakese li tawa .
+pini la meli lili pi jan Elitese
+~ li kama jo e len linja pi pona lukin .
 ")
 
 #SitelenTu("
 == soweli mani pi jan suli Kejon
+
+pali sin la jan Elakese
+~ li wile lanpan e soweli mani mute pi jan Kejon .
+jan Kejon li jan suli pi sijelo tu wan .
+jan Kejon li lon ma Eliteja .
+ma ni li ma ante lili lon telo suli .
+nasin la jan Elakese li pilin utala tawa seli suno .
+ona li nasin e ilo kipisi pi tawa waso tawa suno .
+jan sewi suno Apolo li pilin wa tawa jan Elakese ,
+~ li pana e tomo pi tawa telo pi kiwen jelo
+~~ tawa jan Elakese .
+tan ni la jan Elakese li ken tawa telo .
+
+tenpo lili la jan Elakese li kama lon ma Eliteja .
+ona li kama lukin e soweli awen pi lawa tu .
+soweli li mu , li wile utala .
+wawa lili la jan Elakese li moli e soweli awen kepeken palisa suli ona .
+
+jan awen mute li kute e kalama utala .
+ona li kama , li kalama , li wile utala .
+wawa lili la jan Elakese li moli e jan awen ale .
+
+jan suli Kejon li kute e kalama utala .
+ona li kama , li wile utala .
+jan Kejon
+~ li jo e ilo awen tu wan ,
+~ li len e ilo pi awen lawa tu wan lon lawa tu wan ona ,
+~ li jo e palisa kipisi tu wan .
+ona li utala jan Elakese .
+jan Elakese li tawa e ilo kipisi pi tawa waso tawa ona .
+ilo li kipisi e sinpin lawa pi jan Kejon .
+ilo li pana e telo moli lon insa lawa ona .
+tan ni la jan Kejon li moli kepeken wawa lili .
+
+jan Ela li lukin e ni la
+~ ona li pana e pipi kalama tawa kulupu pi soweli mani .
+soweli ale li pilin monsuta , li tawa wawa lon nasin mute .
+tenpo suli la jan Elakese li alasa e soweli ale .
+soweli ale li linluwi la
+~ jan Elakese li tawa jo e kulupu soweli
+~ tawa jan Elitese .
+jan Elitese li moli sewi e soweli ale tawa meli sewi Ela .
 ")
 
 #SitelenTu("
 == kili jelo pi jan mute Sepelite
+
+jan Elitese li toki utala .
+te tenpo pini la mi wile pali e pali suli luka luka tawa sina .
+~ taso jan ante li pana pona tawa sina .
+~ tan ni la mi wile pana e pali sin tu tawa sina . to
+ni la jan Elakese li wile lanpan e kili nasa .
+kili ni li lon ma kasi pi jan Sepelite ,
+~ li jelo sama kiwen mani jelo ,
+~ li pona moku .
+
+jan Elakese li sona ala e kili .
+nanpa wan la ona li wile kama sona e ni :
+~ kili jelo li lon ma seme ?
+ona li kama lukin e jan majuna/2 lon telo suli .
+jan telo li sona e ma pi Sepelite .
+jan Elakese li tawa .
+
+jan Elakese li kama lon ma kasi pi jan Sepelite .
+taso kili jelo li sewi suli .
+jan Elakese li ken ala lanpan e kili .
+ona li kama lukin e jan suli Alasu .
+jan Alasu li jo e sewi lon sewi monsi ona .
+jan Elakese li toki .
+te toki a !
+~ mi wile lanpan e kili ni .
+~ taso mi lili ike .
+~ ken la sina ken lanpan e ona , li pana e ona tawa mi .
+~ sewi li suli anu seme ? .
+~ tenpo lili la mi ken jo e sewi .
+~ ni la sina ken lape . to
+jan Alasu li toki insa .
+la ona li toki .
+te pona .
+~ sina jo e sewi la mi lanpan e kili . to
+
+taso jan Alasu li toki pi lon ala .
+ona li kama jo e kili la ona li toki .
+te a a a !
+~ sina isipin ike .
+~ mi wile ala jo sin e sewi .
+~ sina o jo e ona lon tenpo ale .
+~ a a a ! to
+jan Elakese li toki .
+te pona ala .
+~ monsi mi li pilin ike .
+~ ken la sina ken jo e sewi lon tenpo lili taso anu seme ?
+~ ni la mi ken misikeke e monsi mi .
+~ la mi jo sin e sewi . to
+jan Alasu li oke .
+
+jan Alasu li jo e sewi la
+~ jan Elakese li tawa a !
+te a a a !
+~ sina isipin ike .
+~ mi wile ala jo e sewi .
+~ o pona tawa sina . to
+jan Elakese li lanpan e kili ,
+~ li pana e ona tawa jan Elitese .
 ")
 
 #SitelenTu("

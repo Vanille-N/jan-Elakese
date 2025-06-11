@@ -16,78 +16,96 @@
 //   The severity decides the order in which they appear.
 
 #import "aux.typ"
-#import "nimi.typ"
-#import "sitelen.typ"
+#import "nimi.typ": ale as nimi-ale
+#import "nasin-sitelen.typ"
+#import "kokosila.typ": switch
 
-#let (open, pakala, pini) = aux.make-new-log("pakala")
+#let (open-aux, pakala, pini) = aux.make-new-log("pakala")
 
-#let non-uppercase(initial, word) = {
-  let tag = "uppercase("+word+")"
-  pakala(red, tag, 4)[
-    "#initial" lon "#word" li lili ike
-  ]
+#let open() = open-aux(switch[lipu ni li jo e pakala lili:][The following typos have been detected:])
+
+#let lili-ike(lili, nimi) = {
+  let tag = "uppercase("+nimi+")"
+  pakala(red, tag, 4, switch[
+    "#lili" lon "#nimi" li lili ike
+  ]["#lili" in the name "#nimi" should be uppercase])
 }
 
-#let non-lowercase(letter, word) = {
-  let tag = "lowercase("+letter+","+word+")"
-  pakala(red, tag, 5)[
-    "#letter" lon "#word" li suli ike
-  ]
+#let suli-ike(lili, nimi) = {
+  let tag = "lowercase("+lili+","+nimi+")"
+  pakala(red, tag, 5, switch[
+    "#lili" lon "#nimi" li suli ike
+  ]["#lili" in the name "#nimi" should be lowercase])
 }
 
-#let length-mismatch(word, spelling) = {
-  let tag = "len("+word+")"
-  pakala(red, tag, 2)[
-    "#word" li ante nanpa sitelen tawa "#sitelen.Nimi(spelling)"
-  ]
+#let nanpa-ante(nimi, lili-mute) = {
+  let tag = "len("+nimi+")"
+  pakala(red, tag, 2, switch[
+    "#nimi" li ante nanpa sitelen tawa "#nasin-sitelen.Nimi(lili-mute)"
+  ]["#nimi" should have the same length as its spelling "#nasin-sitelen.Nimi(lili-mute)"])
 }
 
-#let sitelen-ala(word) = {
-  let tag = "sitelen("+word+")"
-  pakala(red, tag, 1)[
-    "#word" li lon ala nasin sitelen pona
-  ]
+#let sitelen-ala(nimi) = {
+  let tag = "sitelen("+nimi+")"
+  pakala(red, tag, 1, switch[
+    "#nimi" li lon ala nasin sitelen pona
+  ]["#nimi" does not have a known hieroglyph])
 }
 
-#let incorrect-spelling(letter, hieroglyph, word, spelling) = {
-  let tag = "spelling("+letter+","+hieroglyph+","+word+")"
-  pakala(red, tag, 0)[
-    "#hieroglyph" (#sitelen.seli-kiwen[#hieroglyph])
-    lon "#sitelen.Nimi(spelling)" li ante tawa "#letter" lon "#word"
-  ]
+#let sitelen-ante(lili, sitelen, nimi, lili-mute) = {
+  let tag = "spelling("+lili+","+sitelen+","+nimi+")"
+  pakala(red, tag, 0, switch[
+    "#sitelen" (#nasin-sitelen.seli-kiwen[#sitelen])
+    lon "#nasin-sitelen.Nimi(lili-mute)"
+    li ante tawa "#lili" lon "#nimi"
+  ][
+    "#sitelen" (#nasin-sitelen.seli-kiwen[#sitelen])
+    in "#nasin-sitelen.Nimi(lili-mute)"
+    does not spell out "#lili" in "#nimi"
+  ])
 }
 
-#let sama-sitelen-wan(initial, this, other) = {
-  let (this-word, this-spell) = this
-  let (other-word, other-spell) = other
-  let tag = "initial("+this-word+","+other-word+")"
-  pakala(red, tag, 3)[
-    #this-word (#sitelen.Nimi(this-spell))
-    en #other-word (#sitelen.Nimi(other-spell))
-    li sama sitelen wan "#sitelen.seli-kiwen(initial)"
-  ]
+#let sama-sitelen-wan(lili, ni1, ni2) = {
+  let (nimi1, lili-mute1) = ni1
+  let (nimi2, lili-mute2) = ni2
+  let tag = "initial("+nimi1+","+nimi2+")"
+  pakala(red, tag, 3, switch[
+    #nimi1 (#nasin-sitelen.Nimi(lili-mute1))
+    en #nimi2 (#nasin-sitelen.Nimi(lili-mute2))
+    li sama sitelen wan "#nasin-sitelen.seli-kiwen(lili)"
+  ][
+    #nimi1 (#nasin-sitelen.Nimi(lili-mute1))
+    and #nimi2 (#nasin-sitelen.Nimi(lili-mute2))
+    have the same initial "#nasin-sitelen.seli-kiwen(lili)"
+  ])
 }
 
-#let rarity-alert(word, ctx, var: none) = {
-  let meta = nimi.ale.at(word, default: none)
-  let tag = "rarity-"+ctx+"("+word+")"
+#let pu-ala-pu(nimi, seme, nanpa-ante: none) = {
+  let meta = nimi-ale.at(nimi, default: none)
+  let tag = "rarity-"+seme+"("+nimi+")"
   if meta == none {
-    pakala(red, tag, 0)[
-      "#word" li lon ala
-    ]
+    pakala(red, tag, 0, switch[
+      "#nimi" li lon ala
+    ]["#nimi" is not a known word])
   } else if meta.group != "word" {
     none
   } else if meta.rarity == "pu" {
     none
   } else if meta.rarity == "ku" {
-    pakala(orange, tag, 7)[
-      "#word" (#sitelen.seli-kiwen(word + aux.str-some(var)))
+    pakala(orange, tag, 7, switch[
+      "#nimi" (#nasin-sitelen.seli-kiwen(nimi + aux.str-some(nanpa-ante)))
       li lon pu ala
-    ]
+    ][
+      "#nimi" (#nasin-sitelen.seli-kiwen(nimi + aux.str-some(nanpa-ante)))
+      is not in "pu" (rare word)
+    ])
   } else if meta.rarity == "sin" {
-    pakala(orange, tag, 6)[
-      "#word" (#sitelen.seli-kiwen(word)) li lon ku suli ala
-    ]
+    pakala(orange, tag, 6, switch[
+      "#nimi" (#nasin-sitelen.seli-kiwen(nimi)) li lon ku suli ala
+    ][
+      "#nimi" (#nasin-sitelen.seli-kiwen(nimi))
+      is not in "ku suli" (obscure word)
+    ])
   } else {
     panic[Rarity #meta.rarity is malformed]
   }

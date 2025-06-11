@@ -1,2 +1,2 @@
 watch:
-    typst watch --font-path fonts src/main.typ main.pdf
+    typst watch --font-path=fonts --root=. src/main.typ main.pdf

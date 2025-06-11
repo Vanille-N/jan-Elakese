@@ -67,6 +67,7 @@
   "?": punct("?", ""),
   "~": punct("", h(2.5mm)),
   "~~": punct("", h(5mm)),
+  "\\": punct(linebreak(), ""),
 )
 
 /// Record of all existing words.
